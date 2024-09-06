@@ -9,7 +9,7 @@
 <body class="bg-gray-100">
 
 <div class="container mx-auto max-w-4xl mt-10">
-    <h1 class="text-4xl font-bold mb-6 text-center">Get a Free Quotation</h1>
+    <h1 class="text-4xl font-bold mb-6 text-center">Get a Free Quotation - Content Nation</h1>
 
     <form id="quotationForm"  class="bg-white p-6 rounded-lg shadow-lg">
         @csrf
