@@ -12,5 +12,3 @@ use App\Http\Controllers\EmailController;
 Route::get('/', [QuotationController::class, 'index']);
 Route::post('/quotation', [QuotationController::class, 'store']);
 
-Route::get('/sendMail', [QuotationController::class, 'sendNotifyMail']);
-

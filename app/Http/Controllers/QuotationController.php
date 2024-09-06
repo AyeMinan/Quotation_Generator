@@ -40,24 +40,19 @@ class QuotationController extends Controller
             'estimated_cost' => $estimatedCost,
         ]);
 
-        // Calling the sendNotifyMail method to send the email
-        $this->sendNotifyMail($request, $estimatedCost);
+
+            $name = $request->name;
+            $email = $request->email;
+            $phone = $request->phone;
+            $service = $request->service;
+            $subject = "Quotation Notify Mail";
+        Mail::to($email)->send(new NotifyMail( $name, $email, $phone, $service, $estimatedCost, $subject));
+
 
         // Returning a JSON response after sending the email
         return response()->json(['message' => 'Quotation submitted successfully!', 'quotation' => $quotation]);
     }
 
-    public function sendNotifyMail(Request $request, $estimatedCost)
-    {
-        $name = $request->name;
-        $email = $request->email;
-        $phone = $request->phone;
-        $service = $request->service;
-        $subject = "Quotation Notify Mail";
-
-        // Passing all necessary data to the Mailable class
-        Mail::to($email)->send(new NotifyMail($name, $email, $phone, $service, $estimatedCost, $subject));
-    }
 
     private function calculateCost(Request $request)
     {
