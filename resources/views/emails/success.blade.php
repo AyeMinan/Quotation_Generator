@@ -1,21 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quotation Details</title>
+    <title>Your Requested Quote</title>
 </head>
 <body>
-    <h2>Quotation Request Details</h2>
-    <p><strong>Name:</strong> {{ $name }}</p>
-    <p><strong>Email:</strong> {{ $email }}</p>
-    <p><strong>Phone:</strong> {{ $phone }}</p>
-    <p><strong>Service Selected:</strong> {{ $service }}</p>
-    <p><strong>Estimated Cost:</strong> ${{ number_format($estimatedCost, 2) }}</p>
+    <h1>Thank You for Requesting a Quote!</h1>
+    <p>Here are the details of your requested quote:</p>
 
-    <h3>Additional Information</h3>
-    <p>If you have any questions or need further assistance, please feel free to reply to this email.</p>
+    <p><strong>Name:</strong> {{ $quotation['name'] }}</p>
+    <p><strong>Email:</strong> {{ $quotation['email'] }}</p>
+    <p><strong>Phone:</strong> {{ $quotation['phone'] }}</p>
+    <p><strong>Service:</strong> {{ ucfirst(str_replace('_', ' ', $quotation['service'])) }}</p>
+    @if($quotation['service'] == 'web_design')
+        <p><strong>Number of Pages:</strong> {{ $quotation['number_of_pages'] }}</p>
+    @endif
+    @if($quotation['service'] == 'seo')
+        <p><strong>Target Market:</strong> {{ $quotation['target_market'] }}</p>
+        <p><strong>Keywords:</strong> {{ $quotation['keywords'] }}</p>
+    @endif
+    @if($quotation['service'] == 'digital_marketing')
+        <p><strong>Ad Budget:</strong> ${{ number_format($quotation['ad_budget'], 2) }}</p>
+    @endif
+    <p><strong>Estimated Cost:</strong> ${{ number_format($quotation['estimated_cost'], 2) }}</p>
 
-    <p>Thank you for choosing us!</p>
+    <p>Please feel free to reach out to us if you have any questions or need further information.</p>
+
+    <p>Best regards,</p>
+    <p>Your Company Name</p>
 </body>
 </html>

@@ -8,5 +8,5 @@ class Quotation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'phone', 'service', 'project_requirements', 'budget_range' , 'timeframe', 'additional_options', 'estimated_cost'];
+    protected $fillable = ['name', 'email', 'phone', 'service', 'number_of_pages', 'target_market' , 'keywords', 'ad_budget', 'estimated_cost'];
 }

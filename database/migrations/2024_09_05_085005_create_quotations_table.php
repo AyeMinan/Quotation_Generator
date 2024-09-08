@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('service');
-            $table->text('project_requirements');
-            $table->string('budget_range');
-            $table->string('timeframe');
-            $table->string('additional_options')->nullable();
-            $table->decimal('estimated_cost', 8, 2);
+            $table->integer('number_of_pages')->nullable();
+            $table->string('target_market')->nullable();
+            $table->text('keywords')->nullable();
+            $table->decimal('ad_budget', 10, 2)->nullable();
+            $table->decimal('estimated_cost', 10, 2);
             $table->timestamps();
         });
     }

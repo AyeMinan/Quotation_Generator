@@ -13,23 +13,22 @@ class NotifyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-   public $name;
-   public $email;
-   public $phone;
-   public $service;
-   public $estimatedCost;
-   public $subject;
+//    public $name;
+//    public $email;
+//    public $phone;
+//    public $service;
+//    public $estimatedCost;
+//    public $subject;
+      public $quotation;
 
 
-    public function __construct($name, $email, $phone, $service, $estimatedCost,$subject)
-    {
-        $this->name = $name;
-        $this->email = $email;
-        $this->phone = $phone;
-        $this->service = $service;
-        $this->estimatedCost = $estimatedCost;
-        $this->subject = $subject;
-    }
+
+   public function __construct($quotation)
+   {
+       $this->quotation = $quotation;
+   }
+
+
 
 
     public function envelope(): Envelope
