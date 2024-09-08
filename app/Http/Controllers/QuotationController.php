@@ -227,7 +227,7 @@ class QuotationController extends Controller
 
         // Send the email
         try {
-            Mail::to($quotation['email'])->send(new NotifyMail($quotation));
+            Mail::to($quotation['email'])->queue(new NotifyMail($quotation));
 
             // Clear the session data after sending the email
             $request->session()->forget('quotation');
