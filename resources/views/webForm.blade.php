@@ -61,70 +61,10 @@
         <div id="quote_summary" class="mt-8 p-4 bg-green-100 rounded hidden">
             <h2 class="text-xl font-semibold mb-2">Estimated Quote</h2>
             <p id="estimated_cost" class="text-lg mb-4"></p>
-           
+
             <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="submitForm()">Confirm and Submit</button>
         </div>
     </div>
 
-    <script>
-    function updateFormFields() {
-        const selectedService = document.getElementById('service').value;
-        document.getElementById('web_design_fields').classList.add('hidden');
-        document.getElementById('seo_fields').classList.add('hidden');
-        document.getElementById('digital_marketing_fields').classList.add('hidden');
-
-        if (selectedService === 'web_design') {
-            document.getElementById('web_design_fields').classList.remove('hidden');
-        } else if (selectedService === 'seo') {
-            document.getElementById('seo_fields').classList.remove('hidden');
-        } else if (selectedService === 'digital_marketing') {
-            document.getElementById('digital_marketing_fields').classList.remove('hidden');
-        }
-    }
-
-    function calculateQuotation() {
-        const formData = new FormData(document.getElementById('quotationForm'));
-        fetch('/calculate-quotation', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('estimated_cost').textContent = `Estimated Cost: $${data.estimated_cost}`;
-            document.getElementById('quote_summary').classList.remove('hidden');
-
-            document.getElementById('quote_summary').scrollIntoView({ behavior: 'smooth' });
-        })
-        .catch(error => console.error('Error:', error));
-    }
-
-    function submitForm() {
-        // document.getElementById('quotationForm').submit();
-
-        const formData = new FormData(document.getElementById('quotationForm'));
-        fetch('/quotation', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        })
-        .then(response => {
-            if(response.redirected){
-                window.location.href = response.url;
-            }else{
-                return response.json();
-            }
-        })
-        .then(data => {
-            document.getElementById('estimated_cost').textContent = `Estimated Cost: $${data.estimated_cost}`;
-            document.getElementById('quote_summary').classList.remove('hidden');
-
-        })
-        .catch(error => console.error('Error:', error));
-    }
-    </script>
+  
 </x-layout>
