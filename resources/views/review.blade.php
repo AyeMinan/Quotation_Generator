@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <div class="container mx-auto px-4 py-8 ">
         <h1 class="text-3xl font-semibold mb-6 text-center">Review Your Quotation</h1>
         <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 

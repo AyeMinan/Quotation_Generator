@@ -1,4 +1,4 @@
-<header class="bg-indigo-600 text-white">
+<header class="sticky top-0 bg-indigo-600 text-white">
     <div class="container mx-auto px-4 py-6 flex justify-between items-center">
         <a href="/"><h1 class="text-2xl font-bold">Content Nation</h1> </a>
         <nav>

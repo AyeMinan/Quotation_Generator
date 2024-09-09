@@ -41,12 +41,13 @@
         .cta-button:hover {
             background-color: #0056b3;
         }
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <img src="your-logo-url.png" alt="Content Nation Logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNcebvLqT5fWIWem0_KF_9Up1XFVw82n_peA&s" alt="Content Nation Logo">
         </div>
 
         <h1>Thank You for Requesting a Quote!</h1>
@@ -60,28 +61,34 @@
                     <strong>Phone:</strong> {{ $quotation['phone'] }}</td>
             </tr>
             <tr>
-                <th>Service Details</th>
-                <td><strong>Service:</strong> {{ ucfirst(str_replace('_', ' ', $quotation['service'])) }}</td>
+                <th>Service</th>
+                <td><strong>{{ ucfirst(str_replace('_', ' ', $quotation['service'])) }}</strong></td>
+
             </tr>
-            @if($quotation['service'] == 'web_design')
             <tr>
-                <td colspan="2"><strong>Number of Pages:</strong> {{ $quotation['number_of_pages'] }}</td>
-            </tr>
+                <th>Service Details</th>
+                @if($quotation['service'] == 'web_design')
+
+                <td class="details" colspan="2"><strong>Number of Pages:</strong> {{ $quotation['number_of_pages'] }}</td>
+
             @endif
             @if($quotation['service'] == 'seo')
-            <tr>
-                <td colspan="2"><strong>Target Market:</strong> {{ $quotation['target_market'] }}<br>
+
+                <td class="details" colspan="2"><strong>Target Market:</strong> {{ $quotation['target_market'] }}<br>
                     <strong>Keywords:</strong> {{ $quotation['keywords'] }}</td>
-            </tr>
+
             @endif
             @if($quotation['service'] == 'digital_marketing')
-            <tr>
-                <td colspan="2"><strong>Ad Budget:</strong> ${{ number_format($quotation['ad_budget'], 2) }}</td>
-            </tr>
+
+                <td class="details"  colspan="2"><strong>Ad Budget:</strong> ${{ number_format($quotation['ad_budget'], 2) }}</td>
+
             @endif
+
+            </tr>
+
             <tr>
                 <th>Estimated Cost</th>
-                <td><strong>$ {{ number_format($quotation['estimated_cost'], 2) }}</strong></td>
+                <td class="text-center" ><strong>$ {{ number_format($quotation['estimated_cost'], 2) }}</strong></td>
             </tr>
         </table>
 

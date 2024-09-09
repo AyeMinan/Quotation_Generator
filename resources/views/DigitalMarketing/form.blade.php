@@ -1,7 +1,6 @@
 <x-layout>
     <div class="container mx-auto px-4 py-8 max-w-2xl">
         <h1 class="text-3xl font-semibold mb-6 text-center">Get a Quote</h1>
-
         <form id="quotationForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <!-- Client Details -->
             <div class="mb-4">
@@ -21,14 +20,14 @@
             <div class="mb-4">
                 <label for="service" class="block text-gray-700 text-sm font-bold mb-2">Service:</label>
                 <select id="service" name="service" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required onchange="updateFormFields()">
-                    <option value="web_design" selected>Web Development</option>
+                    <option value="web_design" >Web Development</option>
                     <option value="seo">SEO</option>
-                    <option value="digital_marketing">Digital Marketing</option>
+                    <option value="digital_marketing" selected>Digital Marketing</option>
                 </select>
             </div>
 
             <!-- Conditional Fields (Initially Hidden) -->
-            <div id="web_design_fields" class="mb-4">
+            <div id="web_design_fields" class="mb-4 hidden">
                 <div class="mb-4">
                     <label for="number_of_pages" class="block text-gray-700 text-sm font-bold mb-2">Number of Pages:</label>
                     <input type="number" id="number_of_pages" name="number_of_pages" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -46,7 +45,7 @@
                 </div>
             </div>
 
-            <div id="digital_marketing_fields" class="mb-4 hidden">
+            <div id="digital_marketing_fields" class="mb-4">
                 <div class="mb-4">
                     <label for="ad_budget" class="block text-gray-700 text-sm font-bold mb-2">Estimated Ad Budget:</label>
                     <input type="number" id="ad_budget" name="ad_budget" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -61,10 +60,9 @@
         <div id="quote_summary" class="mt-8 p-4 bg-green-100 rounded hidden">
             <h2 class="text-xl font-semibold mb-2">Estimated Quote</h2>
             <p id="estimated_cost" class="text-lg mb-4"></p>
-
             <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="submitForm()">Confirm and Submit</button>
         </div>
     </div>
 
-  
+
 </x-layout>

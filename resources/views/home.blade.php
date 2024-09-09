@@ -56,6 +56,7 @@
             <h2 class="text-3xl font-bold text-gray-800 text-center mb-10">Contact Us</h2>
             <div class="max-w-md mx-auto">
                 <form action="/contact" method="post" class="bg-white p-6 rounded-lg shadow-lg">
+                    @csrf
                     <div class="mb-4">
                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                         <input type="text" id="name" name="name" class="mt-1 block w-full py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
@@ -70,7 +71,13 @@
                     </div>
                     <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md shadow-md hover:bg-indigo-700">Send Message</button>
                 </form>
+                @if (session('success'))
+                <div class="text-green-700 text-center mt-5">
+                    {{ session('success') }}
+                </div>
+            @endif
             </div>
+
         </div>
     </section>
 

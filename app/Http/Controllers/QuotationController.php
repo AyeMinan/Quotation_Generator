@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Quotation;
+use App\Models\Message;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifyMail;
 
@@ -12,45 +13,6 @@ class QuotationController extends Controller
     public function index()
     {
         return view('quotations.index');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'service' => 'required',
-            'project_requirements' => 'required',
-            'budget_range' => 'required',
-            'timeframe' => 'required',
-        ]);
-
-        $estimatedCost = $this->calculateCost($request);
-
-        $quotation = Quotation::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'service' => $request->service,
-            'project_requirements' => $request->project_requirements,
-            'budget_range' => $request->budget_range,
-            'timeframe' => $request->timeframe,
-            'additional_options' => $request->additional_options,
-            'estimated_cost' => $estimatedCost,
-        ]);
-
-
-            $name = $request->name;
-            $email = $request->email;
-            $phone = $request->phone;
-            $service = $request->service;
-            $subject = "Quotation Notify Mail";
-        Mail::to($email)->send(new NotifyMail( $name, $email, $phone, $service, $estimatedCost, $subject));
-
-
-        // Returning a JSON response after sending the email
-        return response()->json(['message' => 'Quotation submitted successfully!', 'quotation' => $quotation]);
     }
 
     public function submitForm(Request $request)
@@ -128,12 +90,6 @@ class QuotationController extends Controller
             'estimated_cost' => $estimatedCost,
         ]);
 
-
-        // Return success response
-        // return response()->json([
-        //     'message' => 'Quotation successfully created.',
-        //     'estimated_cost' => $estimatedCost,
-        // ]);
         return redirect('/review');
     }
 
@@ -150,22 +106,6 @@ class QuotationController extends Controller
         // Return the review view with the data
         return view('review', compact('quotation'));
     }
-
-    private function calculateCost(Request $request)
-    {
-        // Basic cost calculation logic
-        $baseCost = 1000;
-        $serviceMultiplier = 1.2;
-        $additionalCost = 0;
-
-        if ($request->additional_options) {
-            $additionalCost = 500;
-        }
-
-        return ($baseCost * $serviceMultiplier) + $additionalCost;
-    }
-
-
 
     public function calculateQuotation(Request $request)
     {
@@ -241,19 +181,30 @@ class QuotationController extends Controller
     public function service(){
         return view('service');
     }
-    public function form(){
-        return view('form');
-    }
 
     public function websiteDevelopmentFrom(){
-        return view('webForm');
+        return view('WebsiteDevelopment.form');
     }
     public function digitalMarketing(){
-        return view('digitalMarketingForm');
+        return view('DigitalMarketing.form');
     }
     public function seo(){
-        return view('seoForm');
+        return view('SEO.form');
     }
 
+    public function contact(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required'
+        ]);
+
+        $message = Message::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message
+        ]);
+        return redirect()->back()->with('success', 'Your message is sent successfully');
+    }
 
 }

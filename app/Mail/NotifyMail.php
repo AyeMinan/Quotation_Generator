@@ -13,12 +13,6 @@ class NotifyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-//    public $name;
-//    public $email;
-//    public $phone;
-//    public $service;
-//    public $estimatedCost;
-//    public $subject;
       public $quotation;
 
 
